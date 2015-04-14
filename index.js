@@ -43,15 +43,19 @@ Roller.prototype.roll = function roll(diceString) {
   }
 
   if (matches.length === 4) {
-    var dice    = matches[1];
-    var sides   = matches[2];
-    var bonus   = _.isNumber(matches[3]) ? matches[3] : 0;
-    var results = this._rollDice(dice, sides);
+    var dice    = parseInt(matches[1], 10);
+    var sides   = parseInt(matches[2], 10);
+    var bonus   = parseInt(matches[3], 10);
+    var rolls   = this._rollDice(dice, sides);
+    var results = { results: rolls };
 
-    return {
-      results: results,
-      total: _.sum(results)
-    };
+    if (!_.isNaN(bonus)) {
+      results.results.push(bonus);
+    }
+
+    results.total = _.sum(results.results);
+
+    return results;
   }
 
   throw new Error('Parse error');
