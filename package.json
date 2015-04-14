@@ -1,0 +1,18 @@
+{
+  "name": "d20-roller",
+  "version": "0.1.0",
+  "author": "Mike Green <mike.is.green@gmail.com>",
+  "bin": {
+    "dice": "bin/dice.js"
+  },
+  "license": "MIT",
+  "keywords": [
+    "d20",
+    "dice"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikedamage/d20-roller.git"
+  },
+  "dependencies": {},
+}
