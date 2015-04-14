@@ -79,5 +79,9 @@ Roller.prototype.abilityScores = function() {
   return results;
 };
 
+Roller.prototype.bonus = function bonus(score) {
+  return Math.floor(bonus / 2) - 5;
+};
+
 
 module.exports = Roller;
