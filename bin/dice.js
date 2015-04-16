@@ -39,7 +39,7 @@ var commands = {
 
     if (!args.length) {
       console.log(chalk.magenta('Please specify some dice to roll'));
-      process.exit();
+      process.exit(1);
     }
 
     dice   = args.join('');
@@ -71,15 +71,42 @@ var commands = {
     console.log(data);
   },
   abilities: function() {
+    var result, data;
 
+    result = roller.abilityScores();
+
+    if (argv.showResults) {
+      data = align(_.map(result, function(res) {
+        return [ resultsTemplate({ results: res.results }), '=', res.total ];
+      }));
+    } else {
+      data = _.map(result, 'total');
+    }
+
+    _.forEach(data, function(score) {
+      console.log(score);
+    });
   },
   bonus: function() {
+    var result;
 
+    if (!args.length) {
+      console.log(chalk.magenta('Please specify a score'));
+      process.exit(1);
+    }
+
+    result = roller.bonus(args[0])
+
+    if (result > -1) {
+      console.log('+' + result);
+    } else {
+      console.log(result);
+    }
   }
 };
 
 if (!argv._.length) {
-  console.log(chalk.bold(chalk.red('Please specify a command: ')) + 'See --help for usage.');
+  console.log(chalk.bold.red('Please specify a command: ') + 'See --help for usage.');
   process.exit();
 }
 
