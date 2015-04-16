@@ -16,10 +16,10 @@
     "url": "https://github.com/mikedamage/d20-roller.git"
   },
   "dependencies": {
-    "bragi": "0.0.23",
     "chalk": "^1.0.0",
     "lodash": "^3.6.0",
     "random-js": "^1.0.4",
+    "space-align": "0.0.2",
     "yargs": "^3.7.1"
   }
 }
