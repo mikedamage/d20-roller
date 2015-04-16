@@ -31,6 +31,8 @@ var argv    = require('yargs')
 
 var roller, command, args;
 
+var resultsTemplate = _.template('[ <%= results.join(", ") %> ]');
+
 var commands = {
   roll: function() {
     var dice, result, data;
@@ -45,7 +47,7 @@ var commands = {
 
     if (argv.showResults) {
       data = align([
-        [ '[ ' + result.results.join(', ') + ' ]', '=', result.total ]
+        [ resultsTemplate({ results: result.results }), '=', result.total ]
       ])[0];
     } else {
       data = result.total;
@@ -54,7 +56,19 @@ var commands = {
     console.log(data);
   },
   ability: function() {
+    var result, data;
 
+    result = roller.abilityScore();
+
+    if (argv.showResults) {
+      data = align([
+        [ resultsTemplate({ results: result.results }), '=', result.total ]
+      ])[0];
+    } else {
+      data = result.total;
+    }
+
+    console.log(data);
   },
   abilities: function() {
 
